@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Grammaly icon">
+  <rect width="96" height="96" rx="18" fill="#1f846a"/>
+  <path fill="#ffffff" d="M48 18c16.6 0 30 13.4 30 30S64.6 78 48 78 18 64.6 18 48s13.4-30 30-30Zm0 10c-11 0-20 9-20 20s9 20 20 20c6.4 0 12.1-3 15.7-7.7l-7.9-6c-1.8 2.3-4.6 3.7-7.8 3.7-5.5 0-10-4.5-10-10s4.5-10 10-10c3.2 0 6 1.4 7.8 3.7l7.9-6C60.1 31 54.4 28 48 28Z"/>
+  <path fill="#d7f3e8" d="M51 46h27v8H51z"/>
+</svg>

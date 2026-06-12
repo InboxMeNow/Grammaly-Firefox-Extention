@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grammaly Options</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="header">
+        <img src="../icons/icon.svg" alt="" width="40" height="40">
+        <div>
+          <h1>Grammaly</h1>
+          <p>English spelling, vocabulary, and grammar checking for editable fields.</p>
+        </div>
+      </header>
+
+      <form id="settings-form" class="settings">
+        <label class="toggle-row">
+          <span>
+            <strong>Enable extension</strong>
+            <small>Allow Grammaly to check text from editable fields.</small>
+          </span>
+          <input id="enabled" type="checkbox">
+        </label>
+
+        <label class="toggle-row">
+          <span>
+            <strong>Show selection icon</strong>
+            <small>Display the Grammaly button after you highlight text.</small>
+          </span>
+          <input id="autoCheck" type="checkbox">
+        </label>
+
+        <label>
+          <span>Gemini API key</span>
+          <input id="apiKey" type="password" autocomplete="off" placeholder="AIza...">
+        </label>
+
+        <label>
+          <span>API endpoint</span>
+          <input id="endpoint" type="url" placeholder="https://generativelanguage.googleapis.com/v1beta">
+        </label>
+
+        <label>
+          <span>Model</span>
+          <input id="model" type="text" placeholder="gemini-3.1-flash-lite">
+        </label>
+
+        <div class="grid">
+          <label>
+            <span>Minimum characters</span>
+            <input id="minTextLength" type="number" min="1" max="200" step="1">
+          </label>
+
+          <label>
+            <span>Typing delay (ms)</span>
+            <input id="debounceMs" type="number" min="250" max="5000" step="50">
+          </label>
+        </div>
+
+        <footer class="footer">
+          <button type="submit">Save</button>
+          <button id="reset-9router" type="button" class="secondary">Reset to local 9Router</button>
+          <span id="status" role="status"></span>
+        </footer>
+      </form>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>

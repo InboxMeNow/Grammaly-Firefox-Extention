@@ -1,0 +1,63 @@
+{
+  "manifest_version": 2,
+  "name": "Grammaly English Assistant",
+  "version": "0.1.0",
+  "description": "Checks English spelling, vocabulary, and grammar in editable fields with AI-powered correction suggestions.",
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "storage",
+    "tabs",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": [
+      "background/background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "Grammaly",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "48": "icons/icon.svg"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content/content.js"
+      ],
+      "css": [
+        "content/content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": false
+  },
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "grammaly-english-assistant@example.local",
+      "data_collection_permissions": {
+        "required": [
+          "authenticationInfo",
+          "personalCommunications",
+          "websiteContent"
+        ]
+      },
+      "strict_min_version": "142.0"
+    }
+  }
+}

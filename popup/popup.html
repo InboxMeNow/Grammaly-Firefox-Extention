@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grammaly</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <header class="brand">
+        <img src="../icons/icon.svg" alt="" width="36" height="36">
+        <div>
+          <h1>Grammaly</h1>
+          <p id="key-status">Loading...</p>
+        </div>
+      </header>
+
+      <label class="toggle-row">
+        <span>Enabled</span>
+        <input id="enabled" type="checkbox">
+      </label>
+
+      <label class="toggle-row">
+        <span>Selection icon</span>
+        <input id="autoCheck" type="checkbox">
+      </label>
+
+      <div class="actions">
+        <button id="check-now" type="button">Check selection</button>
+        <button id="open-options" type="button" class="secondary">Options</button>
+      </div>
+
+      <button id="reset-router" type="button" class="secondary wide">Reset 9Router</button>
+
+      <p id="status" role="status"></p>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "grammaly-firefox-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Firefox extension for AI-powered English spelling, vocabulary, and grammar suggestions.",
+  "scripts": {
+    "lint": "web-ext lint --source-dir .",
+    "proxy": "node dev-9router-proxy.js",
+    "run": "web-ext run --source-dir ."
+  },
+  "devDependencies": {
+    "web-ext": "^8.10.0"
+  }
+}
