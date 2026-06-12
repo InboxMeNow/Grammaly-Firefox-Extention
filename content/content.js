@@ -243,11 +243,17 @@
   }
 
   function positionSelectionButton(rect) {
-    const top = window.scrollY + rect.bottom + 8;
+    const buttonSize = 34;
+    const gap = 8;
+    const topBelow = window.scrollY + rect.bottom + gap;
+    const topAbove = window.scrollY + rect.top - buttonSize - gap;
+    const viewportTop = window.scrollY + 8;
+    const viewportBottom = window.scrollY + window.innerHeight - buttonSize - 8;
+    const top = topBelow + buttonSize <= viewportBottom ? topBelow : topAbove;
     const left = window.scrollX + rect.right - 34;
     const maxLeft = window.scrollX + window.innerWidth - 44;
 
-    selectionButton.style.top = `${Math.max(window.scrollY + 8, top)}px`;
+    selectionButton.style.top = `${clamp(top, viewportTop, viewportBottom)}px`;
     selectionButton.style.left = `${Math.max(window.scrollX + 8, Math.min(left, maxLeft))}px`;
   }
 
@@ -519,7 +525,6 @@
         mark.dataset.type = String(issueRange.issue.type || "style").replace(/_/g, " ");
         mark.dataset.suggestion = String(issueRange.issue.suggestion || "");
         mark.dataset.explanation = String(issueRange.issue.explanation || "");
-        mark.title = buildTooltipText(mark);
         mark.setAttribute("aria-label", buildTooltipText(mark));
         mark.style.left = `${window.scrollX + rect.left}px`;
         mark.style.top = `${window.scrollY + rect.bottom - 3}px`;
@@ -588,11 +593,17 @@
     document.documentElement.append(tooltip);
 
     const rect = mark.getBoundingClientRect();
-    const top = window.scrollY + rect.bottom + 8;
+    const gap = 8;
+    const tooltipHeight = tooltip.offsetHeight;
+    const viewportTop = window.scrollY + 12;
+    const viewportBottom = window.scrollY + window.innerHeight - tooltipHeight - 12;
+    const topBelow = window.scrollY + rect.bottom + gap;
+    const topAbove = window.scrollY + rect.top - tooltipHeight - gap;
+    const top = topBelow <= viewportBottom ? topBelow : topAbove;
     const maxLeft = window.scrollX + window.innerWidth - tooltip.offsetWidth - 12;
     const left = Math.max(window.scrollX + 12, Math.min(window.scrollX + rect.left, maxLeft));
 
-    tooltip.style.top = `${top}px`;
+    tooltip.style.top = `${clamp(top, viewportTop, viewportBottom)}px`;
     tooltip.style.left = `${left}px`;
   }
 
@@ -706,22 +717,32 @@
 
   function positionPanel(element, anchor) {
     const rect = anchor && typeof anchor.bottom === "number" ? anchor : null;
+    const panelHeight = element.offsetHeight;
+    const viewportTop = window.scrollY + 12;
+    const viewportBottom = window.scrollY + window.innerHeight - panelHeight - 12;
     const fallbackTop = window.scrollY + 16;
     const fallbackLeft = window.scrollX + window.innerWidth - element.offsetWidth - 12;
 
     if (!rect) {
-      element.style.top = `${fallbackTop}px`;
+      element.style.top = `${clamp(fallbackTop, viewportTop, viewportBottom)}px`;
       element.style.left = `${Math.max(12, fallbackLeft)}px`;
       return;
     }
 
-    const top = window.scrollY + rect.bottom + 8;
+    const gap = 8;
+    const topBelow = window.scrollY + rect.bottom + gap;
+    const topAbove = window.scrollY + rect.top - panelHeight - gap;
+    const top = topBelow <= viewportBottom ? topBelow : topAbove;
     const preferredLeft = window.scrollX + rect.right - element.offsetWidth;
     const maxLeft = window.scrollX + window.innerWidth - element.offsetWidth - 12;
     const left = Math.max(window.scrollX + 12, Math.min(preferredLeft, maxLeft));
 
-    element.style.top = `${Math.max(window.scrollY + 12, top)}px`;
+    element.style.top = `${clamp(top, viewportTop, viewportBottom)}px`;
     element.style.left = `${left}px`;
+  }
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(value, max));
   }
 
   function removePanel() {
